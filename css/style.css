@@ -1,6 +1,104 @@
 html,
 body {
-  background-color: black;
+  background-color: grey;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+*.icon {
+  height: 20px;
+  width: 20px;
+}
+
+body {
+  display: grid;
+  grid-template-columns: max-content 3fr;
+  grid-template-rows: max-content 3fr;
+  overflow: auto;
+  resize: both;
+}
+body header {
+  grid-area: 1/2;
+  background-color: white;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.385);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(2, max-content);
+  align-items: center;
+}
+body header form {
+  grid-area: 1;
+}
+body header form input {
+  width: 80%;
+}
+body header #alerts {
+  grid-area: 1/2;
+  display: flex;
+  flex: 1;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  gap: 20px;
+}
+body header #alerts img:last-of-type {
+  border-radius: 100%;
+  height: 36px;
+  width: 36px;
+}
+body header #welcome {
+  grid-area: 2/1;
+  display: grid;
+  grid-template-columns: max-content 4fr;
+  grid-auto-rows: max-content;
+  align-items: center;
+  justify-items: start;
+}
+body header #welcome img {
+  grid-area: span 2/1;
+  width: 90px;
+  border-radius: 100%;
+}
+body header #welcome p {
+  grid-area: 1/2;
+}
+body header #welcome h1 {
+  grid-area: 2/2;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+body header #btn-container {
+  grid-area: 2/2;
+  display: inline-flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+body header #btn-container button {
+  height: 33px;
+  width: 90px;
+  background-color: rgb(21, 145, 227);
+  border: none;
+  border-radius: 25px;
+  color: white;
+}
+body .sidebar {
+  color: white;
+  background-color: rgb(21, 145, 227);
+  grid-area: span 2/1;
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+body .sidebar ul {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+  gap: 10px;
+  list-style: none;
 }
 
 /*# sourceMappingURL=style.css.map */
