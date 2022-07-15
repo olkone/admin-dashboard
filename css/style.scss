@@ -1,3 +1,35 @@
+$main-background: #06b6d4;
+$main-gradient: linear-gradient(0deg, #0f766e, #06b6d4);
+/*$main-gradient: linear-gradient(0deg, #cffafe, #fffbeb);*/
+
+$header-background: transparent;
+$header-text: white;
+$input-color: white;
+$input-border: 1px solid lightgray;
+$header-shadow: none;
+
+$button-color: #ecfeff;
+$button-text: #134e4a;
+$button-border: none;
+
+$icon-size: 20px;
+
+$sidebar-width: 170px;
+$sidebar-background: transparent;
+$sidebar-text: white;
+
+$signature: #67e8f9;
+$signature-hover: white;
+
+$right-bar-width: 290px;
+$right-bar-background: rgba(255, 255, 255, 0.78);
+$pin-text: #0f3f3c;
+
+$content-background:rgba(255, 255, 255, 0.78);
+$content-min-width: 330px;
+$content-title: #0f3f3c;
+$content-text: #134e4a;
+
 html {
     height: 100%;
     width: 100%;
@@ -5,23 +37,31 @@ html {
 
 html,
 body {
-    background-color: grey;
+    background-color: $main-background;
+    background-image: $main-gradient;
     font-family: Arial, Helvetica, sans-serif;
 
     margin: 0;
     padding: 0;
-
 }
 
 *.icon {
-    height: 20px;
-    width: 20px;
+    height: $icon-size;
+    width: $icon-size;
+}
+
+*.icon:hover {
+    transform: scale(1.07);
+}
+
+*.icon:active {
+    transform: scale(0.96);
 }
 
 body {
     display: grid;
 
-    grid-template-columns: max(170px, 10%) 1fr;
+    grid-template-columns: max($sidebar-width, 10%) 1fr;
     grid-template-rows: max-content 1fr;
 
     overflow: auto;
@@ -33,8 +73,9 @@ body {
     header {
         grid-area: 1 / 2;
 
-        background-color: white;
-        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.385);
+        background-color: $header-background;
+        box-shadow: $header-shadow;
+        color: $header-text;
     
         display: grid;
         grid-template-columns: 2fr 1fr;
@@ -49,7 +90,6 @@ body {
             flex: auto;
             justify-content: space-between;
 
-            
             padding: 10px 0;
             width: 100%;
 
@@ -65,13 +105,19 @@ body {
                 input {
                     width: min(500px, 80%);
                     height: 1.4rem;
-                    border: 1px solid lightgray;
+                    background-color: $input-color;
+                    border: $input-border;
                     border-radius: 10px;
+                    
+                    text-indent: 10px;
                 }
+
+                input:focus {
+                    outline: none;
+                } 
             }
         
             #alerts {
-    
                 display: flex;
                 flex: 1;
                 flex-flow: row nowrap;
@@ -88,8 +134,18 @@ body {
                     width: 36px;
                 }
 
-                span {
-                    margin-left: -10px;
+                a .icon {
+                    height: $icon-size;
+                    width: $icon-size;
+                }
+                a {
+                    color: $header-text;
+                    margin-left: -8px;
+                    text-decoration: none;
+                }
+
+                a:hover {
+                    text-decoration: underline;
                 }
             }
         }
@@ -100,7 +156,6 @@ body {
             display: grid;
             grid-template-columns: max-content 4fr;
             grid-auto-rows: max-content;
-
             
             justify-items: start;
             margin: 0;
@@ -144,22 +199,22 @@ body {
             padding-right: 20px;
 
             button {
-                height: 35px;
-                width: 100px;
+                height: 45px;
+                width: 120px;
 
-                background-color: rgb(21, 145, 227);
-                border: none;
+                background-color: $button-color;
+                border: $button-border;
                 border-radius: 25px;
-                color: white;
-                
+                color: $button-text;
+                font-size: 0.9rem;
+                font-weight: 500;  
             }
-
         }
     }
 
     .sidebar {
-        color: white;
-        background-color: rgb(21, 145, 227);
+        color: $sidebar-text;
+        background-color: $sidebar-background;
         grid-area: 1 / 1 / 3 / 1;
 
         display: flex;
@@ -167,7 +222,6 @@ body {
         flex-flow: column nowrap;
 
         height: 100%;
-        
         position: relative;
 
         #fixed {
@@ -176,7 +230,7 @@ body {
             flex-flow: column nowrap;
     
             height: 100%;
-            
+
             align-items: left;
             position: fixed;
             justify-content: flex-start;
@@ -212,26 +266,40 @@ body {
                 }
 
                 a {
-                    color: white;
+                    color: $sidebar-text;
                     text-decoration: none;
 
                     display: inline-flex;
                     gap: 6px;
-                    
                 }
 
                 a:hover {
                     text-decoration: underline;
                 }
-            }   
+            }
+            
+            #signature {
+                color: $signature;
+                font-size: .75rem;
+                margin: 15px 10px;
+
+                a {
+                    color: $signature;
+                    transition-duration: 150ms;
+                }
+
+                a:hover {
+                    color: $signature-hover;
+                    
+                }
+            }
         }
     }
 
     #main {
-
         display: grid;
 
-        grid-template-columns: 1fr max(200px, 20%);
+        grid-template-columns: 1fr minmax($right-bar-width, 20%);
         grid-template-rows: 1fr;
 
         .pins {
@@ -244,15 +312,42 @@ body {
             height: 100%;
             gap: 20px;
 
+            margin-top: 10px;
             margin-right: 10px;
+            margin-left: 0;
 
             .pin {
                 height: max-content;
-                margin: 10px;
-                padding: 10px;
+                padding: 15px;
+                margin-right: 10px;
 
-                background-color: rgba(255, 255, 255, 0.668);
-                border-radius: 10px;
+                background-color: $right-bar-background;
+                border-radius: 20px;
+                color: $pin-text;
+
+                h3 {
+                    margin: 0;
+                    font-size: 1.3rem;
+                }
+
+                h4 {
+                    font-size: 1rem;
+                    margin-bottom: 4px;
+                }
+
+                .announcement {
+                    border-bottom: 1px solid $pin-text;
+
+                }
+
+                .announcement:last-of-type {
+                    border: none;
+                }
+
+                div p {
+                    font-size: .9rem;
+                    margin-top: 0;
+                }
             }
         }
 
@@ -275,27 +370,29 @@ body {
                 flex: auto;
                 flex-flow: column nowrap;
 
-                background-color: rgba(255, 255, 255, 0.752);
+                background-color: $content-background;
                 border-radius: 20px;
 
                 margin: 10px auto;
                 height: max-content;
-                width: min(80%, 325px);
+                width: min(80%, $content-min-width);
 
                 h2 {
+                    color: $content-title;
                     font-size: 1.4rem;
                     margin: 3%;
                 }
 
                 .screenshot {
                     margin: auto;
-                    width: max(260px, 80%);
+                    width: max(240px, 90%);
                     height: auto;
 
                     border-radius: 10px;
                 }
                 
                 p {
+                    color: $content-text;
                     margin: 4%;
                     font-size: 1rem;
                 }
@@ -304,14 +401,9 @@ body {
                     display: inline-flex;
                     gap: 15px;
                     justify-content: flex-end;
-
                     margin: 0 3% 3% 3%;
                 }
-            
             }
-        
         }
-    
     }
-
 }
