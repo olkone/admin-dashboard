@@ -61,6 +61,9 @@ These are the contexts for grid and flexbox I found to work well.
 * Mac Terminal
 
 ## Check out some of my other projects!
+* Library
+    * [Live Page](https://olkone.github.io/library/)
+    * [Repository](https://github.com/olkone/library)
 * Sign-Up Form
     * [Live Page](https://olkone.github.io/sign-up-form/)
     * [Repository](https://github.com/olkone/sign-up-form)
